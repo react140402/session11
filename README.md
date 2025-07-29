@@ -16,6 +16,10 @@
     installed react-native-screens@4.13.1
     installed react-native-safe-area-context@5.5.2
 
+# React Native Elemenets
+    bun add @rneui/themed @rneui/base react-native-vector-icons
+    bun add @react-navigation/elements
+
 
 > **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
 

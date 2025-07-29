@@ -7,6 +7,8 @@
 
 import { useState } from 'react';
 import { StatusBar, StyleSheet, Text, useColorScheme, View, TouchableOpacity } from 'react-native';
+import { Button, Icon } from '@rneui/themed';
+
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
@@ -16,9 +18,10 @@ function App() {
     <View style={styles.container}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <Text>Salam Donay</Text>
-      <TouchableOpacity style={styles.btn} onPress={() => setCounter(counter + 1)} >
+      <Button style={styles.btn} onPress={() => setCounter(counter + 1)} >
         <Text>+</Text>
-      </TouchableOpacity>
+        <Icon name="save" color="white" />
+      </Button>
       <Text>{counter}</Text>
     </View>
   );
