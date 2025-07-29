@@ -5,16 +5,21 @@
  * @format
  */
 
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
+import { useState } from 'react';
+import { StatusBar, StyleSheet, Text, useColorScheme, View, TouchableOpacity } from 'react-native';
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
+  const [counter, setCounter] = useState(0)
 
   return (
     <View style={styles.container}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <NewAppScreen templateFileName="App.tsx" />
+      <Text>Salam Donay</Text>
+      <TouchableOpacity style={styles.btn} onPress={() => setCounter(counter + 1)} >
+        <Text>+</Text>
+      </TouchableOpacity>
+      <Text>{counter}</Text>
     </View>
   );
 }
@@ -22,6 +27,10 @@ function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  btn: {
+    backgroundColor: '#ccc',
+    padding: 10
   },
 });
 
