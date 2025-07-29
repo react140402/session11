@@ -10,6 +10,7 @@ import { StyleSheet, FlatList } from 'react-native';
 import { Button, Card, Text } from '@rneui/themed';
 import Icon from '@react-native-vector-icons/material-design-icons';
 import { supabase } from '../api';
+import { RefreshControl } from 'react-native';
 
 
 
@@ -24,7 +25,7 @@ export default function DrugStoresScreen() {
   }, [page])
 
   async function loadData() {
-    console.log(page)
+    console.log(page, page * PageSize, ((page + 1) * PageSize) - 1)
     setLoading(true);
     const { data, error } = await supabase
       .from('DrugStore')
@@ -32,8 +33,14 @@ export default function DrugStoresScreen() {
       .range(page * PageSize, ((page + 1) * PageSize) - 1)
       ;
     setLoading(false);
-    if (data)
-      setDrugStoreList([...drugStoreList, ...data])
+    if (data) {
+      if (page === 0) {
+        setDrugStoreList(data)
+      } else {
+        setDrugStoreList([...drugStoreList, ...data])
+      }
+
+    }
   }
 
   return (
@@ -41,6 +48,8 @@ export default function DrugStoresScreen() {
       <Text>Drug Stores</Text>
       <FlatList data={drugStoreList}
         refreshing={loading}
+        refreshControl={
+          <RefreshControl refreshing={loading} onRefresh={() => setPage(0)}></RefreshControl>}
         renderItem={({ item }) => <>
 
           <Card>
