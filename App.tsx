@@ -8,22 +8,24 @@
 import { useState } from 'react';
 import { StatusBar, StyleSheet, Text, useColorScheme, View, TouchableOpacity } from 'react-native';
 import { Button, Icon } from '@rneui/themed';
+import { createStaticNavigation } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import HomeScreen from './src/screens/HomeScreen';
+import CounterScreen from './src/screens/CounterScreen';
 
+const RootStack = createNativeStackNavigator({
+  screens: {
+    Home: HomeScreen,
+    Counter: CounterScreen,
+  },
+});
+
+const Navigation = createStaticNavigation(RootStack);
 
 function App() {
-  const isDarkMode = useColorScheme() === 'dark';
-  const [counter, setCounter] = useState(0)
 
   return (
-    <View style={styles.container}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <Text>Salam Donay</Text>
-      <Button style={styles.btn} onPress={() => setCounter(counter + 1)} >
-        <Text>+</Text>
-        <Icon name="save" color="white" />
-      </Button>
-      <Text>{counter}</Text>
-    </View>
+    <Navigation />
   );
 }
 
