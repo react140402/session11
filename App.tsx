@@ -13,7 +13,12 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './src/screens/HomeScreen';
 import CounterScreen from './src/screens/CounterScreen';
 
-const RootStack = createNativeStackNavigator({
+export type RootStackParamList = {
+  Home: undefined;
+  Counter: undefined;
+}
+
+const RootStack = createNativeStackNavigator<RootStackParamList>({
   initialRouteName: 'Home',
   screens: {
     Home: HomeScreen,
