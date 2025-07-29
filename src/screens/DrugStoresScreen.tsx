@@ -17,6 +17,7 @@ const PageSize = 10;
 export default function DrugStoresScreen() {
   const [page, setPage] = useState(0);
   const [drugStoreList, setDrugStoreList] = useState<any[]>([])
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     loadData();
@@ -24,11 +25,13 @@ export default function DrugStoresScreen() {
 
   async function loadData() {
     console.log(page)
+    setLoading(true);
     const { data, error } = await supabase
       .from('DrugStore')
       .select('*', { count: 'exact' })
       .range(page * PageSize, ((page + 1) * PageSize) - 1)
       ;
+    setLoading(false);
     if (data)
       setDrugStoreList([...drugStoreList, ...data])
   }
@@ -37,6 +40,7 @@ export default function DrugStoresScreen() {
     <>
       <Text>Drug Stores</Text>
       <FlatList data={drugStoreList}
+        refreshing={loading}
         renderItem={({ item }) => <>
 
           <Card>
