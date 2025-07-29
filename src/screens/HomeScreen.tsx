@@ -13,10 +13,9 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../App';
 import { supabase } from '../api';
 
-type NavigationProps = NativeStackNavigationProp<RootStackParamList, "Counter">;
+type NavigationProps = NativeStackNavigationProp<RootStackParamList, "Counter" | "DrugStores">;
 
 function HomeScreen() {
-  const isDarkMode = useColorScheme() === 'dark';
   const navigation = useNavigation<NavigationProps>();
 
   useEffect(() => {
@@ -33,11 +32,11 @@ function HomeScreen() {
   }
 
   return (
-    <View style={styles.container}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+    <>
       <Text>Salam Donay 💃</Text>
       <Button onPress={() => navigation.navigate("Counter")}>Counter</Button>
-    </View>
+      <Button onPress={() => navigation.navigate("DrugStores")}>Drug Store</Button>
+    </>
   );
 }
 

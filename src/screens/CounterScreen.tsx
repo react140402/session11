@@ -16,14 +16,13 @@ function CounterScreen() {
   const [counter, setCounter] = useState(0)
 
   return (
-    <View style={styles.container}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+    <>
       <Button style={styles.btn} onPress={() => setCounter(counter + 1)} >
         <Text></Text>
         <Icon name="plus-circle" color="white" />
       </Button>
       <Text>{counter}</Text>
-    </View>
+    </>
   );
 }
 
