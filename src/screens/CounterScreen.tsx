@@ -7,7 +7,8 @@
 
 import { useState } from 'react';
 import { StatusBar, StyleSheet, Text, useColorScheme, View, TouchableOpacity } from 'react-native';
-import { Button, Icon } from '@rneui/themed';
+import { Button } from '@rneui/themed';
+import Icon from '@react-native-vector-icons/material-design-icons';
 
 
 function CounterScreen() {
@@ -18,8 +19,8 @@ function CounterScreen() {
     <View style={styles.container}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <Button style={styles.btn} onPress={() => setCounter(counter + 1)} >
-        <Text>+</Text>
-        <Icon name="save" color="white" />
+        <Text></Text>
+        <Icon name="plus-circle" color="white" />
       </Button>
       <Text>{counter}</Text>
     </View>

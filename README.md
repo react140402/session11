@@ -17,7 +17,7 @@
     installed react-native-safe-area-context@5.5.2
 
 # React Native Elemenets
-    bun add @rneui/themed @rneui/base react-native-vector-icons
+    bun add @rneui/themed @rneui/base @react-native-vector-icons/material-design-icons
     bun add @react-navigation/elements
 
 
