@@ -20,16 +20,17 @@ export default function DrugStoresScreen() {
 
   useEffect(() => {
     loadData();
-  }, [])
+  }, [page])
 
   async function loadData() {
+    console.log(page)
     const { data, error } = await supabase
       .from('DrugStore')
       .select('*', { count: 'exact' })
-      .range(page * PageSize, ((page + 1) * PageSize))
+      .range(page * PageSize, ((page + 1) * PageSize) - 1)
       ;
     if (data)
-      setDrugStoreList(data)
+      setDrugStoreList([...drugStoreList, ...data])
   }
 
   return (
@@ -46,6 +47,7 @@ export default function DrugStoresScreen() {
           </Card>
         </>}
         keyExtractor={(item) => item.id}
+        onEndReached={() => setPage(page + 1)}
       />
 
 
