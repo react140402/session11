@@ -2,6 +2,21 @@
 ## bunx @react-native-community/cli init
 ## bunx react-native run-android
 
+
+
+# React Navigation 
+    https://reactnavigation.org/docs/getting-started
+    
+    bun add  @react-navigation/native @react-navigation/native-stack @react-navigation/bottom-tabs @react-navigation/drawer react-native-screens react-native-safe-area-context
+
+    installed @react-navigation/native@7.1.16
+    installed @react-navigation/native-stack@7.3.23
+    installed @react-navigation/bottom-tabs@7.4.4
+    installed @react-navigation/drawer@7.5.5
+    installed react-native-screens@4.13.1
+    installed react-native-safe-area-context@5.5.2
+
+
 > **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
 
 ## Step 1: Start Metro
