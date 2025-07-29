@@ -14,6 +14,7 @@ import HomeScreen from './src/screens/HomeScreen';
 import CounterScreen from './src/screens/CounterScreen';
 
 const RootStack = createNativeStackNavigator({
+  initialRouteName: 'Home',
   screens: {
     Home: HomeScreen,
     Counter: CounterScreen,
