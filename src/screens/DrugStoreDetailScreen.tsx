@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import Icon from '@react-native-vector-icons/material-design-icons';
 import axios from "axios";
 import SvgUri from "expo-svg-uri";
+import WebView from "react-native-webview";
+
 
 type Props = NativeStackScreenProps<RootStackParamList, 'DrugStoreDetail'>;
 
@@ -159,6 +161,30 @@ export default function DrugStoreDetailScreen({ route }: Props) {
 
                 {/* Optional: Embedded Map */}
                 <View style={styles.mapContainer}>
+                    <WebView style={styles.map} source={{
+                        html: `
+                    <!DOCTYPE html>
+        <html>
+        <head>
+          <title>Simple Leaflet Map</title>
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+          <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+        </head>
+        <body>
+          <div id="mapid" style="height: 98vh; width: 100%;"></div>
+          <script>
+             var map = L.map('mapid').setView([${drugStore.latitude}, ${drugStore.longitude}], 16);
+              L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                }).addTo(map);
+            L.marker([${drugStore.latitude}, ${drugStore.longitude}]).addTo(map)
+            .bindPopup('${drugStore.name}')
+            // .openPopup();
+          </script>
+          </body>
+          </html>
+                        `  }}></WebView>
                     {/* <MapView
             style={styles.map}
             initialRegion={{
