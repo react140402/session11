@@ -1,19 +1,10 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { useState } from 'react';
-import { StatusBar, StyleSheet, Text, useColorScheme, View, TouchableOpacity } from 'react-native';
-import DrugStoresScreen from './src/screens/DrugStoresScreen';
+import { StyleSheet, useColorScheme } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import HomeTab from './src/screens/HomeTab';
-import CounterScreen from './src/screens/CounterScreen';
 import DrugStoreTab from './src/screens/DrugStoreTab';
-
+import Icon from '@react-native-vector-icons/material-design-icons';
 const Tab = createBottomTabNavigator();
 
 
@@ -24,8 +15,18 @@ function App() {
     <NavigationContainer>
 
       <Tab.Navigator>
-        <Tab.Screen name="HomeTab" component={HomeTab} options={{ headerShown: false }} />
-        <Tab.Screen name="DrugStoresTab" component={DrugStoreTab} options={{ headerShown: false }} />
+        <Tab.Screen name="HomeTab"
+          component={HomeTab}
+          options={{
+            headerShown: false,
+            tabBarIcon: ({ color, size }) => (<Icon name="home" size={size} color={color} />)
+          }}
+        />
+        <Tab.Screen name="DrugStoresTab" component={DrugStoreTab}
+          options={{
+            headerShown: false,
+            tabBarIcon: ({ color, size }) => (<Icon name="heart" size={size} color={color} />)
+          }} />
       </Tab.Navigator>
     </NavigationContainer>
   );
