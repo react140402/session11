@@ -5,36 +5,29 @@
  * @format
  */
 
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useState } from 'react';
 import { StatusBar, StyleSheet, Text, useColorScheme, View, TouchableOpacity } from 'react-native';
-import { Button, Icon } from '@rneui/themed';
-import { createStaticNavigation } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import HomeScreen from './src/screens/HomeScreen';
-import CounterScreen from './src/screens/CounterScreen';
 import DrugStoresScreen from './src/screens/DrugStoresScreen';
-import DrugStoreDetailScreen from './src/screens/DrugStoreDetailScreen';
-import { RootStackParamList } from './src/RootStackParamList';
+import { NavigationContainer } from '@react-navigation/native';
+import HomeTab from './src/screens/HomeTab';
+import CounterScreen from './src/screens/CounterScreen';
+import DrugStoreTab from './src/screens/DrugStoreTab';
 
-const RootStack = createNativeStackNavigator<RootStackParamList>({
-  initialRouteName: 'Home',
-  screens: {
-    Home: HomeScreen,
-    Counter: CounterScreen,
-    DrugStores: DrugStoresScreen,
-    DrugStoreDetail: DrugStoreDetailScreen
-  },
-});
+const Tab = createBottomTabNavigator();
 
-const Navigation = createStaticNavigation(RootStack);
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
   return (
-    <View style={styles.container}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <Navigation />
-    </View>
+
+    <NavigationContainer>
+
+      <Tab.Navigator>
+        <Tab.Screen name="HomeTab" component={HomeTab} options={{ headerShown: false }} />
+        <Tab.Screen name="DrugStoresTab" component={DrugStoreTab} options={{ headerShown: false }} />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
 

@@ -18,7 +18,7 @@ import Svg, { Circle, Rect } from 'react-native-svg';
 type NavigationProps = NativeStackNavigationProp<RootStackParamList, "Counter" | "DrugStores">;
 
 function HomeScreen() {
-  const navigation = useNavigation<NavigationProps>();
+  const navigation = useNavigation<any>();
 
   useEffect(() => {
     loadData();
@@ -37,7 +37,7 @@ function HomeScreen() {
     <>
       <Text>Salam Donay 💃</Text>
       <Button onPress={() => navigation.navigate("Counter")}>Counter</Button>
-      <Button onPress={() => navigation.navigate("DrugStores")}>Drug Store</Button>
+      <Button onPress={() => navigation.navigate("DrugStoresTab")}>Drug Store</Button>
       <Image style={styles.logo} source={require('../../assets/app-logo.png')}></Image>
       <Svg height="50%" width="50%" viewBox="0 0 100 100" >
         <Circle cx="50" cy="50" r="45" stroke="blue" strokeWidth="2.5" fill="green" />
