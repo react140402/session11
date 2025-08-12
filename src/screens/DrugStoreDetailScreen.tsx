@@ -12,6 +12,7 @@ type Props = NativeStackScreenProps<RootStackParamList, 'DrugStoreDetail'>;
 export default function DrugStoreDetailScreen({ route }: Props) {
 
     const [drugStore, setDrugStore] = useState<any>({})
+    const [user, setUser] = useState<any>({})
     useEffect(() => {
         loadData();
     }, []);
@@ -24,7 +25,30 @@ export default function DrugStoreDetailScreen({ route }: Props) {
 
         if (data)
             setDrugStore(data[0])
-        console.log(data)
+        const resp = await fetch("https://jsonplaceholder.typicode.com/users/1");
+        const user = await resp.json();
+        setUser(user);
+    }
+
+
+    async function loadDataParllel() {
+        supabase
+            .from('DrugStore')
+            .select('*')
+            .eq('id', route.params.id)
+            .then((data: any) => {
+                if (data)
+                    setDrugStore(data[0])
+            })
+            ;
+
+        fetch("https://jsonplaceholder.typicode.com/users/1")
+            .then(resp => resp.json())
+            .then((user: any) => {
+                setUser(user);
+            });
+
+
     }
 
     const handleCall = () => {
@@ -151,6 +175,8 @@ export default function DrugStoreDetailScreen({ route }: Props) {
             {/* Footer */}
             <View style={styles.footer}>
                 <Text style={styles.footerText}>شناسه: {drugStore.id}</Text>
+                <Text style={styles.footerText}>کاربر: {user.name}</Text>
+
             </View>
         </ScrollView>
     );
