@@ -1,5 +1,5 @@
 import { Button, Card, Divider, ListItem, Text } from "@rneui/base";
-import { Linking, ScrollView, StyleSheet, View } from "react-native";
+import { Image, Linking, ScrollView, StyleSheet, View } from "react-native";
 import { RootStackParamList } from "../../App";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { supabase } from "../api";
@@ -65,6 +65,8 @@ export default function DrugStoreDetailScreen({ route }: Props) {
 
     const formatValue = (value: any) => (value === null || value === '' ? 'نامشخص' : value);
 
+    //Image: url <Image source={{uri: }} />
+
     return (
         <ScrollView style={styles.container}>
             {/* Header */}
@@ -81,7 +83,7 @@ export default function DrugStoreDetailScreen({ route }: Props) {
                     <ListItem bottomDivider onPress={handleCall}>
                         <Icon name="phone" color="#007AFF" />
                         <ListItem.Content>
-                            <ListItem.Title>تماس با درمانگاه</ListItem.Title>
+                            <ListItem.Title>تماس با داروخانه</ListItem.Title>
                         </ListItem.Content>
                         <ListItem.Chevron />
                     </ListItem>
@@ -100,6 +102,8 @@ export default function DrugStoreDetailScreen({ route }: Props) {
                 <View style={styles.detailRow}>
                     <Text style={styles.label}>نام مالک:</Text>
                     <Text style={styles.value}>{formatValue(drugStore.ownerName)}</Text>
+                    {/* <Image style={styles.avatar} source={{ uri: 'https://api.dicebear.com/9.x/miniavs/svg?seed=' + drugStore.ownerName }} /> */}
+                    <Image style={styles.avatar} source={{ uri: 'https://reactnative.dev/img/tiny_logo.png' }} />
                 </View>
                 <Divider style={styles.divider} />
                 <View style={styles.detailRow}>
@@ -193,6 +197,10 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'center',
         color: '#007AFF',
+    },
+    avatar: {
+        width: 60,
+        height: 60
     },
     infoRow: {
         flexDirection: 'row',
