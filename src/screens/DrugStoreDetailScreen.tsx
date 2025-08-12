@@ -6,6 +6,7 @@ import { supabase } from "../api";
 import { useEffect, useState } from "react";
 import Icon from '@react-native-vector-icons/material-design-icons';
 import axios from "axios";
+import SvgUri from "expo-svg-uri";
 
 type Props = NativeStackScreenProps<RootStackParamList, 'DrugStoreDetail'>;
 
@@ -103,7 +104,14 @@ export default function DrugStoreDetailScreen({ route }: Props) {
                     <Text style={styles.label}>نام مالک:</Text>
                     <Text style={styles.value}>{formatValue(drugStore.ownerName)}</Text>
                     {/* <Image style={styles.avatar} source={{ uri: 'https://api.dicebear.com/9.x/miniavs/svg?seed=' + drugStore.ownerName }} /> */}
-                    <Image style={styles.avatar} source={{ uri: 'https://reactnative.dev/img/tiny_logo.png' }} />
+                    {/* <Image style={styles.avatar} source={{ uri: 'https://reactnative.dev/img/tiny_logo.png' }} /> */}
+                    <SvgUri
+                        width={60}
+                        height={60}
+                        source={{
+                            uri: 'https://api.dicebear.com/9.x/miniavs/svg?seed=' + drugStore.ownerName,
+                        }}
+                    />
                 </View>
                 <Divider style={styles.divider} />
                 <View style={styles.detailRow}>
