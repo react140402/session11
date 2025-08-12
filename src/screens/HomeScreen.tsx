@@ -6,7 +6,7 @@
  */
 
 import { useEffect, useState } from 'react';
-import { StatusBar, StyleSheet, Text, useColorScheme, View, TouchableOpacity } from 'react-native';
+import { StatusBar, StyleSheet, Text, useColorScheme, View, TouchableOpacity, Image } from 'react-native';
 import { Button, Icon } from '@rneui/themed';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -36,6 +36,7 @@ function HomeScreen() {
       <Text>Salam Donay 💃</Text>
       <Button onPress={() => navigation.navigate("Counter")}>Counter</Button>
       <Button onPress={() => navigation.navigate("DrugStores")}>Drug Store</Button>
+      <Image style={styles.logo} source={require('../../assets/app-logo.png')}></Image>
     </>
   );
 }
@@ -43,6 +44,10 @@ function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  logo: {
+    width: 300,
+    height: 300
   },
   btn: {
     backgroundColor: '#ccc',
