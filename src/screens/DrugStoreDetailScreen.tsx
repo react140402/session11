@@ -5,6 +5,7 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { supabase } from "../api";
 import { useEffect, useState } from "react";
 import Icon from '@react-native-vector-icons/material-design-icons';
+import axios from "axios";
 
 type Props = NativeStackScreenProps<RootStackParamList, 'DrugStoreDetail'>;
 
@@ -25,9 +26,8 @@ export default function DrugStoreDetailScreen({ route }: Props) {
 
         if (data)
             setDrugStore(data[0])
-        const resp = await fetch("https://jsonplaceholder.typicode.com/users/1");
-        const user = await resp.json();
-        setUser(user);
+        const resp = await axios("https://jsonplaceholder.typicode.com/users/1");
+        setUser(resp.data);
     }
 
 
@@ -42,10 +42,9 @@ export default function DrugStoreDetailScreen({ route }: Props) {
             })
             ;
 
-        fetch("https://jsonplaceholder.typicode.com/users/1")
-            .then(resp => resp.json())
-            .then((user: any) => {
-                setUser(user);
+        axios("https://jsonplaceholder.typicode.com/users/1")
+            .then((resp: any) => {
+                setUser(resp.data);
             });
 
 
