@@ -10,7 +10,7 @@ import { StatusBar, StyleSheet, Text, useColorScheme, View, TouchableOpacity, Im
 import { Button, Icon } from '@rneui/themed';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../../App';
+import { RootStackParamList } from '../RootStackParamList';
 import { supabase } from '../api';
 import Svg, { Circle, Rect } from 'react-native-svg';
 

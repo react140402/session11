@@ -14,13 +14,7 @@ import HomeScreen from './src/screens/HomeScreen';
 import CounterScreen from './src/screens/CounterScreen';
 import DrugStoresScreen from './src/screens/DrugStoresScreen';
 import DrugStoreDetailScreen from './src/screens/DrugStoreDetailScreen';
-
-export type RootStackParamList = {
-  Home: undefined;
-  Counter: undefined;
-  DrugStores: undefined;
-  DrugStoreDetail: { id: number };
-}
+import { RootStackParamList } from './src/RootStackParamList';
 
 const RootStack = createNativeStackNavigator<RootStackParamList>({
   initialRouteName: 'Home',

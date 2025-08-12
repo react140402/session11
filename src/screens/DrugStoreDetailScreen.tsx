@@ -1,6 +1,6 @@
 import { Button, Card, Divider, ListItem, Text } from "@rneui/base";
 import { Image, Linking, ScrollView, StyleSheet, View } from "react-native";
-import { RootStackParamList } from "../../App";
+import { RootStackParamList } from '../RootStackParamList';
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { supabase } from "../api";
 import { useEffect, useState } from "react";
