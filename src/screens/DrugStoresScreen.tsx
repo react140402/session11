@@ -11,7 +11,12 @@ import { Button, Card, Text } from '@rneui/themed';
 import Icon from '@react-native-vector-icons/material-design-icons';
 import { supabase } from '../api';
 import { RefreshControl } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../App';
 
+
+type NavigationProps = NativeStackNavigationProp<RootStackParamList, "DrugStoreDetail">;
 
 
 const PageSize = 10;
@@ -19,6 +24,7 @@ export default function DrugStoresScreen() {
   const [page, setPage] = useState(0);
   const [drugStoreList, setDrugStoreList] = useState<any[]>([])
   const [loading, setLoading] = useState(false)
+  const navigation = useNavigation<NavigationProps>();
 
   useEffect(() => {
     loadData();
@@ -54,7 +60,8 @@ export default function DrugStoresScreen() {
 
           <Card>
             <Text h4>{item.name}</Text>
-            <Button size="sm" type="clear">
+            <Button size="sm" type="clear" onPress={() => navigation.navigate("DrugStoreDetail", { id: item.id })}>
+              Details
               <Icon name='more'></Icon>
             </Button>
           </Card>

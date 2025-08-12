@@ -13,11 +13,13 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './src/screens/HomeScreen';
 import CounterScreen from './src/screens/CounterScreen';
 import DrugStoresScreen from './src/screens/DrugStoresScreen';
+import DrugStoreDetailScreen from './src/screens/DrugStoreDetailScreen';
 
 export type RootStackParamList = {
   Home: undefined;
   Counter: undefined;
   DrugStores: undefined;
+  DrugStoreDetail: { id: number };
 }
 
 const RootStack = createNativeStackNavigator<RootStackParamList>({
@@ -25,7 +27,8 @@ const RootStack = createNativeStackNavigator<RootStackParamList>({
   screens: {
     Home: HomeScreen,
     Counter: CounterScreen,
-    DrugStores: DrugStoresScreen
+    DrugStores: DrugStoresScreen,
+    DrugStoreDetail: DrugStoreDetailScreen
   },
 });
 
