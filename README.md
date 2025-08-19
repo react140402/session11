@@ -1,5 +1,15 @@
 ## Session 11
 
+adb devices
+adb logcat
+
+
+Map:
+    https://github.com/react-native-maps/react-native-maps/blob/master/docs/installation.md
+
+Geo Location
+
+
 
 ## bunx @react-native-community/cli init
 ## bunx react-native run-android

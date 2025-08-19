@@ -9,6 +9,7 @@ import axios from "axios";
 import SvgUri from "expo-svg-uri";
 import WebView from "react-native-webview";
 import { event } from "react-native/types_generated/Libraries/Animated/AnimatedExports";
+import MapView, { Marker } from "react-native-maps";
 
 
 type Props = NativeStackScreenProps<RootStackParamList, 'DrugStoreDetail'>;
@@ -162,7 +163,30 @@ export default function DrugStoreDetailScreen({ route }: Props) {
 
                 {/* Optional: Embedded Map */}
                 <View style={styles.mapContainer}>
-                    <WebView style={styles.map} source={{
+                    {drugStore && drugStore.latitude && drugStore.longitude && <MapView
+                        style={styles.map}
+                        initialRegion={{
+                            latitude: parseFloat(drugStore.latitude),
+                            longitude: parseFloat(drugStore.longitude),
+                            latitudeDelta: 0.01,
+                            longitudeDelta: 0.01,
+                        }}
+                        zoomEnabled={false}
+                        scrollEnabled={true}
+                        pitchEnabled={false}
+                        rotateEnabled={false}
+                    >
+                        <Marker
+                            coordinate={{
+                                latitude: parseFloat(drugStore.latitude),
+                                longitude: parseFloat(drugStore.longitude),
+                            }}
+                            title={drugStore.name}
+                        />
+                    </MapView>}
+
+
+                    {/* <WebView style={styles.map} source={{
                         html: `
                     <!DOCTYPE html>
         <html>
@@ -198,7 +222,7 @@ export default function DrugStoreDetailScreen({ route }: Props) {
                         injectedJavaScript={drugStore ? `myFunction('${JSON.stringify(drugStore)}')` : ''}
                     >
 
-                    </WebView>
+                    </WebView> */}
 
                 </View>
             </Card>
