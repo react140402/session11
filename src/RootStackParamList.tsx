@@ -4,4 +4,5 @@ export type RootStackParamList = {
     Counter: undefined;
     DrugStores: undefined;
     DrugStoreDetail: { id: number; };
+    Voice: undefined;
 };

@@ -7,6 +7,7 @@ import { createNativeStackNavigator, NativeStackNavigationProp } from '@react-na
 import { RootStackParamList } from '../RootStackParamList';
 import HomeScreen from './HomeScreen';
 import { createStaticNavigation } from '@react-navigation/native';
+import VoiceScreen from './VoiceScreen';
 
 
 // const RootStack = createNativeStackNavigator<RootStackParamList>({
@@ -27,6 +28,7 @@ export default function HomeTab() {
         <Stack.Navigator>
             <Stack.Screen name="Home" component={HomeScreen} />
             <Stack.Screen name="Counter" component={CounterScreen} />
+            <Stack.Screen name="Voice" component={VoiceScreen} />
             {/* <Stack.Screen name="DrugStores" component={DrugStoresScreen} />
             <Stack.Screen name="DrugStoreDetail" component={DrugStoreDetailScreen} /> */}
         </Stack.Navigator>

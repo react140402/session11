@@ -10,6 +10,19 @@ Map:
 Geo Location
     https://www.npmjs.com/package/@react-native-community/geolocation
 
+Voice
+    https://www.npmjs.com/package/@ascendtis/react-native-voice-to-text
+     react-native-voice-to-text
+
+Rename
+    react-native-rename
+
+
+    com.npmjs.package.react-native-rename
+    fad.ir/pashaie/react-native/app09
+    ir.fad.pashaie.react-native.app09
+
+
 
 ## bunx @react-native-community/cli init
 ## bunx react-native run-android
