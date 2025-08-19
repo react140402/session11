@@ -8,7 +8,7 @@ Map:
     https://github.com/react-native-maps/react-native-maps/blob/master/docs/installation.md
 
 Geo Location
-
+    https://www.npmjs.com/package/@react-native-community/geolocation
 
 
 ## bunx @react-native-community/cli init

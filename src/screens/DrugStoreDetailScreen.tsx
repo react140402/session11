@@ -8,8 +8,8 @@ import Icon from '@react-native-vector-icons/material-design-icons';
 import axios from "axios";
 import SvgUri from "expo-svg-uri";
 import WebView from "react-native-webview";
-import { event } from "react-native/types_generated/Libraries/Animated/AnimatedExports";
 import MapView, { Marker } from "react-native-maps";
+import Geolocation, { GeolocationResponse } from "@react-native-community/geolocation";
 
 
 type Props = NativeStackScreenProps<RootStackParamList, 'DrugStoreDetail'>;
@@ -19,8 +19,15 @@ export default function DrugStoreDetailScreen({ route }: Props) {
 
     const [drugStore, setDrugStore] = useState<any>({})
     const [user, setUser] = useState<any>({})
+    const [location, setLocation] = useState<GeolocationResponse>();
     useEffect(() => {
         loadData();
+        Geolocation.getCurrentPosition(info => {
+            console.log(info);
+            setLocation(info);
+            console.log('<---')
+        });
+
     }, []);
     async function loadData() {
         const { data, error } = await supabase
@@ -163,7 +170,7 @@ export default function DrugStoreDetailScreen({ route }: Props) {
 
                 {/* Optional: Embedded Map */}
                 <View style={styles.mapContainer}>
-                    {drugStore && drugStore.latitude && drugStore.longitude && <MapView
+                    {/* {drugStore && drugStore.latitude && drugStore.longitude && <MapView
                         style={styles.map}
                         initialRegion={{
                             latitude: parseFloat(drugStore.latitude),
@@ -171,7 +178,7 @@ export default function DrugStoreDetailScreen({ route }: Props) {
                             latitudeDelta: 0.01,
                             longitudeDelta: 0.01,
                         }}
-                        zoomEnabled={false}
+                        zoomEnabled={true}
                         scrollEnabled={true}
                         pitchEnabled={false}
                         rotateEnabled={false}
@@ -183,10 +190,19 @@ export default function DrugStoreDetailScreen({ route }: Props) {
                             }}
                             title={drugStore.name}
                         />
-                    </MapView>}
+                        {location &&
+                            <Marker
+                                coordinate={{
+                                    latitude: location.coords.latitude,
+                                    longitude: location.coords.longitude,
+                                }}
+                                title={'👤'}
+                            />
+                        }
+                    </MapView>} */}
 
 
-                    {/* <WebView style={styles.map} source={{
+                    <WebView style={styles.map} source={{
                         html: `
                     <!DOCTYPE html>
         <html>
@@ -210,19 +226,20 @@ export default function DrugStoreDetailScreen({ route }: Props) {
             })
             // .openPopup();
 
-            function myFunction(data){
-                    const drugStore = JSON.parse(data)
-                    window.ReactNativeWebView.postMessage("call shod! " + drugStore.id )
+            function addMarker(data){
+                    const coord = JSON.parse(data);
+                    window.ReactNativeWebView.postMessage(coord.latitude)              
+                    L.marker([coord.latitude, coord.longitude]).addTo(map)
             }
           </script>
           </body>
           </html>
                         `  }}
                         onMessage={(event) => console.log(event)}
-                        injectedJavaScript={drugStore ? `myFunction('${JSON.stringify(drugStore)}')` : ''}
+                        injectedJavaScript={location ? `addMarker('${JSON.stringify(location.coords)}')` : ''}
                     >
 
-                    </WebView> */}
+                    </WebView>
 
                 </View>
             </Card>
