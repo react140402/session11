@@ -16,7 +16,7 @@ Voice
 
 Rename
     npx react-native-rename
-    bunx react-native-rename@latest "App 11 ✨" -b "ir.fad.pashaie.react-native.app11"
+    bunx react-native-rename@latest "App 11 ✨" -b "ir.fad.pashaie.reactnative.app11" 
 
 
     com.npmjs.package.react-native-rename
