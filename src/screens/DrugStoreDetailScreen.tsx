@@ -8,6 +8,7 @@ import Icon from '@react-native-vector-icons/material-design-icons';
 import axios from "axios";
 import SvgUri from "expo-svg-uri";
 import WebView from "react-native-webview";
+import { event } from "react-native/types_generated/Libraries/Animated/AnimatedExports";
 
 
 type Props = NativeStackScreenProps<RootStackParamList, 'DrugStoreDetail'>;
@@ -180,32 +181,25 @@ export default function DrugStoreDetailScreen({ route }: Props) {
                 }).addTo(map);
             L.marker([${drugStore.latitude}, ${drugStore.longitude}]).addTo(map)
             .bindPopup('${drugStore.name}')
+            .on('click', () => {
+                window.ReactNativeWebView.postMessage("salam")
+            })
             // .openPopup();
+
+            function myFunction(data){
+                    const drugStore = JSON.parse(data)
+                    window.ReactNativeWebView.postMessage("call shod! " + drugStore.id )
+            }
           </script>
           </body>
           </html>
-                        `  }}></WebView>
-                    {/* <MapView
-            style={styles.map}
-            initialRegion={{
-              latitude: parseFloat(clinic.latitude),
-              longitude: parseFloat(clinic.longitude),
-              latitudeDelta: 0.01,
-              longitudeDelta: 0.01,
-            }}
-            zoomEnabled={false}
-            scrollEnabled={false}
-            pitchEnabled={false}
-            rotateEnabled={false}
-          >
-            <Marker
-              coordinate={{
-                latitude: parseFloat(clinic.latitude),
-                longitude: parseFloat(clinic.longitude),
-              }}
-              title={clinic.name}
-            />
-          </MapView> */}
+                        `  }}
+                        onMessage={(event) => console.log(event)}
+                        injectedJavaScript={drugStore ? `myFunction('${JSON.stringify(drugStore)}')` : ''}
+                    >
+
+                    </WebView>
+
                 </View>
             </Card>
 
